@@ -1,0 +1,34 @@
+/*
+  this file has been created by abidos
+  F. Manuel Hevia Garcia fructu@gmail.com
+*/
+digraph G {
+        fontname = "Bitstream Vera Sans"
+        fontsize = 8
+
+        node [
+                fontname = "Bitstream Vera Sans"
+                fontsize = 8
+                shape = "record"
+        ]
+
+        edge [
+                fontname = "Bitstream Vera Sans"
+                fontsize = 8
+        ]
+
+/* c_generator_class_diagram::classes() */
+  A [
+    URL="A[main.cpp:1];A[main.cpp:1];hello[main.cpp:2];world[main.cpp:3]",
+    label="{ A|- int hello\l- int world\l}"
+  ]
+
+  B [
+    URL="B[main.cpp:6];B[main.cpp:6];hello[main.cpp:7];world[main.cpp:8]",
+    label="{ B|- int hello\l- int world\l}"
+  ]  
+/* c_generator_class_diagram::inheritance() */
+  /*B->A*/  A->B [dir = "back", color = "black", arrowtail = "empty"];
+/* c_generator_class_diagram::friends() */
+/* compositions_aggregations */
+}
