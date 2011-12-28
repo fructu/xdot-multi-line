@@ -20,7 +20,7 @@ class MyDotWindow(xdot.DotWindow):
 
     def __init__(self):
         #activate/desactivate the feature here:
-        self.multi_line = 0
+        self.multi_line = 1
         xdot.DotWindow.__init__(self, self.multi_line)
 #        xdot.DotWindow.__init__(self)
         self.widget.connect('clicked', self.on_url_clicked)
