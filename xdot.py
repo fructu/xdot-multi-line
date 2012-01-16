@@ -15,12 +15,18 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+# fructu@gmail.com: this file is a branch of the version 0.4 with a new
+# feature:
+#   - multi line suport, now in a node you can have different messages in a URL
+#   label for each line and when you click in one of those lines you will
+#   obtain the associate part of the URL, see example_01.py and example_01.dot.
+#
 
-'''Visualize dot graphs via the xdot format.'''
+'''Visualize dot graphs via the xdot format. multi line branch'''
 
 __author__ = "Jose Fonseca"
 
-__version__ = "0.5"
+__version__ = "0.5.multi_line_2"
 
 
 import os
@@ -48,13 +54,20 @@ import math
 
 class Options:
     def __init__(self):
-      self.multi_line = 0
+      self.multi_line_activate = 0
+      self.line_separator = ';'
 
-    def set_multi_line(self, multi_line):
-      self.multi_line = multi_line
+    def set_multi_line_activate(self, multi_line_activate):
+      self.multi_line_activate = multi_line_activate
 
-    def get_multi_line(self):
-      return self.multi_line
+    def get_multi_line_activate(self):
+      return self.multi_line_activate
+
+    def set_multi_line_separator(self, separator):
+      self.line_separator = separator
+
+    def get_multi_line_separator(self):
+      return self.line_separator
 
 options = Options()
 
@@ -401,7 +414,7 @@ class Node(Element):
     # y is global, i want the position with the top of node
     #
     def get_item_url(self, x, y):
-        item_selected = "";
+        item_selected = ""
         if ( self.y1 >= 0 ):
           y_inside = y - self.y1
         else:
@@ -409,7 +422,8 @@ class Node(Element):
 
         url=Url(self, self.url)
 
-        l_class_parts = url.url.split(";")
+        l_class_parts = url.url.split(options.get_multi_line_separator())
+
         n_parts = len(l_class_parts)
 
         element_height = (self.y2 - self.y1) / n_parts
@@ -420,7 +434,7 @@ class Node(Element):
         if( 0 <= n_element and n_element <= n_parts):
           url.url = l_class_parts[n_element]
 
-        return url;
+        return url
 
 
     def get_url_multi_line(self, x, y):
@@ -505,7 +519,7 @@ class Graph(Shape):
 
     def get_url(self, x, y):
         for node in self.nodes:
-            if options.get_multi_line() == 1:
+            if options.get_multi_line_activate() == 1:
               url = node.get_url_multi_line(x, y)            
             else:
               url = node.get_url(x, y)
@@ -1826,11 +1840,10 @@ class DotWindow(gtk.Window):
 
     base_title = 'Dot Viewer'
 
-    def __init__(self, multi_line = 0):
+    def __init__(self):
         gtk.Window.__init__(self)
 
         self.graph = Graph()
-        options.set_multi_line(multi_line) 
 
         window = self
 
