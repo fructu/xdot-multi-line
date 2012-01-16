@@ -9,6 +9,10 @@
 #  http://code.google.com/p/jrfonseca/wiki/XDot
 #  Copyright 2008 Jose Fonseca
 #
+# in this example you can navigate the source file main.cpp
+# for that you must uncoment the line of the gedit or the kate
+# or put other for your favorite editor.
+#
 
 import os
 import gtk
@@ -20,19 +24,20 @@ class MyDotWindow(xdot.DotWindow):
 
     def __init__(self):
         #activate/desactivate the feature here:
-        self.multi_line = 1
-        xdot.DotWindow.__init__(self, self.multi_line)
-#        xdot.DotWindow.__init__(self)
+        xdot.options.set_multi_line_activate(1)
+        #separator is ';' bye default
+        xdot.options.set_multi_line_separator(';')
+        xdot.DotWindow.__init__(self)
         self.widget.connect('clicked', self.on_url_clicked)
 
     def on_url_clicked(self, widget, url, event):
         if url is not None:
-          if 1 == self.multi_line:
+          if 1 == xdot.options.get_multi_line_activate():
             call_parts = url.split(":")
             file_parts = call_parts[0].split("[")
             line_parts = call_parts[1].split("]")
 
-            command = "echo url "+ file_parts[1]+" +"+ line_parts[0]
+            command = "echo url '"+ file_parts[1]+" +"+ line_parts[0]+ "'"
 #gedit
 #            command = "gedit "+ file_parts[1]+" +"+ line_parts[0]
 #kate
@@ -48,7 +53,7 @@ class MyDotWindow(xdot.DotWindow):
 def main():
     window = MyDotWindow()
     window.set_filter("dot")
-    window.open_file("example.dot");
+    window.open_file("example_02.dot");
     window.connect('destroy', gtk.main_quit)
     gtk.main()
 
