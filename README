@@ -1,5 +1,7 @@
-* Multiline Feature
--------------------
+=Multiline Feature=
+with this feature you can have nodes with more than 1 line of text and
+when you click in one line you will obtain the associate text.
+
 this is a part of my project
 https://github.com/fructu/abidos
 
@@ -10,85 +12,87 @@ http://code.google.com/p/jrfonseca/wiki/XDot
 Copyright 2008 Jose Fonseca
 
 version 0.5
-modification to get multiline url 
+modification to get multiline URL;
 author: fructu@gmail.com
 
-* Explanation
--------------
-with this feature you can asociate earch line of a node with a part of the url.
-in the file in main.cpp we have:
+==example 1==
+execute:
+{{{
+./example_01.py
+}}}
+you can see a node with 2 lines:
+{{{
+label="{hello\lworld}"
+}}}
+each with his correspondent message when you click the first line
+you will obtain the first part of the URL and when you click the second line
+you will obtain the second part of the URL.
+{{{
+URL="hello|world",
+}}}
+The parts of the URL are separated by '|' you can change this separator easily
+with
+{{{
+xdot.options.set_multi_line_separator('|')
+}}}
+
+==example 2==
+This is a way to use this feature to have a UML diagram when you can click
+in one atribute and open the editor with the corresponding line.
+in the file main.cpp we have:
+{{{
 1 class A {
 2    int hello;
 3    int world;
 4 };
-
+}}}
 and in the graph appears a node A with 4 lines:
+{{{
 A
 _
 - int hello
 - int world
-
+}}}
 if you click in "A" you obtain the first part of the URL: 
+{{{
 main.cpp:1
+}}}
 
 if you click in "-int world" you obtain the fourth par of the URL:
+{{{
 main.cpp:3
-
-in example.dot the sintax of the URL label now is:
-
+}}}
+in example_02.dot the sintax of the URL label now is:
+{{{
 A [
    URL="A[main.cpp:1];A[main.cpp:1];hello[main.cpp:2];world[main.cpp:3]",
    label="{ A|- int hello\l- int world\l}"
  ]
-
+}}}
 in URL each item is separated by a ; and have a coresspondence with de lines
 of the node.
-
+{{{
 URL: list_items
   ;
 
 list_items: list_items ';' item
   | item
   ;
-
+}}}
 you can put whatever you want in your items in my case i use 
-
+{{{
 item: ID '[' STRING ':' LINE ']'
   ;
-
+}}}
 the goal is put in each line where the item is in the original file. 
 
 in the example.dot file:
 you can see how i repeat "main.cpp:1" twice that is to fill the line of | in 
 the node's label if you dont draw horizontal lines you dont need this 
 duplication.
-each line part in label must have <id>[<string>:<line>]; in URL
-
-* How activate it in embedded code:
------------------------------------
-to activate multi_lines feature you need:
-xdot version >= 0.5
-
-and put in the code:
-xdot.DotWindow.__init__(self, 1)
-the 1 is to activate it 0 or nothing is to have it compatibe with old versions.
-
-se attached file example.dot to see a example
-
-
-* Example run
--------------
-to run this example:
-
-1) if you wan use the command to open a editor and goes to the line automatically
-  execute the editor to get it opened and get sure you have uncomend the line of 
-  the editor (gedit or kate) in example.py.
-  you can rewrite this command easily to have other editor support
-
-2) run this python script
-     ./example.py
-
-3) click in one line of the node
-
-4) see the command execution out.
+each line part in label must have
+{{{
+<id>[<string>:<line>];
+}}}
+in URL
 

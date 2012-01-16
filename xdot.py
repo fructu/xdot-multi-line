@@ -26,7 +26,7 @@
 
 __author__ = "Jose Fonseca"
 
-__version__ = "0.5.multi_line_2"
+__version__ = "0.5.multi_line_3"
 
 
 import os
