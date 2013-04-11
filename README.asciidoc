@@ -1,11 +1,11 @@
-=Multiline Feature=
+== Multiline Feature
 with this feature you can have nodes with more than 1 line of text and
 when you click in one line you will obtain the associate text.
 
-this is a part of my project
+* this is a part of my project
 https://github.com/fructu/abidos
 
-i use a modification of xdot.py
+* i use a modification of xdot.py
 
 the originals are in:
 http://code.google.com/p/jrfonseca/wiki/XDot
@@ -15,84 +15,98 @@ version 0.5
 modification to get multiline URL;
 author: fructu@gmail.com
 
-==example 1==
-execute:
-{{{
+== example 1
+Execute:
+----
 ./example_01.py
-}}}
-you can see a node with 2 lines:
-{{{
+----
+
+You can see a node with 2 lines:
+----
 label="{hello\lworld}"
-}}}
-each with his correspondent message when you click the first line
+----
+
+Each with his correspondent message when you click the first line
 you will obtain the first part of the URL and when you click the second line
 you will obtain the second part of the URL.
-{{{
-URL="hello|world",
-}}}
-The parts of the URL are separated by '|' you can change this separator easily
-with
-{{{
-xdot.options.set_multi_line_separator('|')
-}}}
 
-==example 2==
+----
+URL="hello|world",
+----
+
+The parts of the URL are separated by '|' you can change this separator easily
+with:
+----
+xdot.options.set_multi_line_separator('|')
+----
+
+== example 2
 This is a way to use this feature to have a UML diagram when you can click
 in one atribute and open the editor with the corresponding line.
 in the file main.cpp we have:
-{{{
+----
 1 class A {
 2    int hello;
 3    int world;
 4 };
-}}}
-and in the graph appears a node A with 4 lines:
-{{{
+----
+
+And in the graph appears a node A with 4 lines:
+----
 A
 _
 - int hello
 - int world
-}}}
-if you click in "A" you obtain the first part of the URL: 
-{{{
-main.cpp:1
-}}}
+----
 
-if you click in "-int world" you obtain the fourth par of the URL:
-{{{
+If you click in "A" you obtain the first part of the URL: 
+----
+main.cpp:1
+----
+
+If you click in "-int world" you obtain the fourth par of the URL:
+----
 main.cpp:3
-}}}
-in example_02.dot the sintax of the URL label now is:
-{{{
+----
+
+In example_02.dot the sintax of the URL label now is:
+----
 A [
    URL="A[main.cpp:1];A[main.cpp:1];hello[main.cpp:2];world[main.cpp:3]",
    label="{ A|- int hello\l- int world\l}"
  ]
-}}}
-in URL each item is separated by a ; and have a coresspondence with de lines
+----
+
+In URL each item is separated by a ; and have a coresspondence with de lines
 of the node.
-{{{
+
+----
 URL: list_items
   ;
 
 list_items: list_items ';' item
   | item
   ;
-}}}
-you can put whatever you want in your items in my case i use 
-{{{
+----
+
+You can put whatever you want in your items in my case i use
+
+----
 item: ID '[' STRING ':' LINE ']'
   ;
-}}}
-the goal is put in each line where the item is in the original file. 
+----
+
+The goal is put in each line where the item is in the original file. 
 
 in the example.dot file:
 you can see how i repeat "main.cpp:1" twice that is to fill the line of | in 
 the node's label if you dont draw horizontal lines you dont need this 
 duplication.
-each line part in label must have
-{{{
+each line part in label must have:
+
+----
 <id>[<string>:<line>];
-}}}
+----
+
 in URL
 
