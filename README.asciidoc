@@ -1,13 +1,14 @@
 == Multiline Feature
-with this feature you can have nodes with more than 1 line of text and
+
+With this feature you can have nodes with more than 1 line of text and
 when you click in one line you will obtain the associate text.
 
-* this is a part of my project
+* This is a part of my project
 https://github.com/fructu/abidos
 
-* i use a modification of xdot.py
+* I used a modification of xdot.py
 
-the originals are in:
+The originals are in:
 http://code.google.com/p/jrfonseca/wiki/XDot
 Copyright 2008 Jose Fonseca
 
