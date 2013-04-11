@@ -24,6 +24,49 @@ Execute:
 You can see a node with 2 lines:
 ----
 label="{hello\lworld}"
+URL="hello|world",
+----
+
+Each with his correspondent message when you click the first line
+you will obtain the first part of the URL:
+
+image::images/hello.png[]
+
+And when you click the second line you will obtain the second part of the URL:
+
+image::images/world.png[]
+
+The parts of the URL are separated by '|' you can change this separator easily
+with:
+----
+xdot.options.set_multi_line_separator('|')
+----
+== Multiline Feature
+with this feature you can have nodes with more than 1 line of text and
+when you click in one line you will obtain the associate text.
+
+* this is a part of my project
+https://github.com/fructu/abidos
+
+* i use a modification of xdot.py
+
+the originals are in:
+http://code.google.com/p/jrfonseca/wiki/XDot
+Copyright 2008 Jose Fonseca
+
+version 0.5
+modification to get multiline URL;
+author: fructu@gmail.com
+
+== example 1
+Execute:
+----
+./example_01.py
+----
+
+You can see a node with 2 lines:
+----
+label="{hello\lworld}"
 ----
 
 Each with his correspondent message when you click the first line
