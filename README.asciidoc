@@ -1,3 +1,10 @@
+== Use Forked repository !
+
+This repository is obsolete right now.
+Due Fosenca has his repository in github i have forked it in:
+
+https://github.com/fructu/xdot.py
+
 == Multiline Feature
 
 With this feature you can have nodes with more than 1 line of text and
